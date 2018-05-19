@@ -29,6 +29,14 @@ public class SurvivorTraits : MonoBehaviour
 	private int staminaRegainRate;
 	public int staminaRegainMultiplier;
 
+	[Header("TEMPURATURE SETTINGS")]
+	public float freezingTemp;
+	public float currentTemp;
+	public float normalTemp;
+	public float heatTemp;
+	public Text tempNumber;
+	public Image tempBG;
+
 	private CharacterController charController;
 	private FirstPersonController playerController;
 
@@ -57,7 +65,46 @@ public class SurvivorTraits : MonoBehaviour
 		playerController = GetComponent<FirstPersonController>();
 	}
 
+	void UpdateTempurature()
+	{
+		// Update the tempurature UI text element
+		tempNumber.text = currentTemp.ToString ("00.0");
+	}
+
 	void Update()
+	{
+		TempuratureController();
+		HealthController();
+		HungerController();
+		ThirstController();
+		StaminaController();
+	}
+
+	#region Tempurature
+	void TempuratureController()
+	{
+		// TEMPURATURE CONTROLLER
+		if (currentTemp <= freezingTemp) {
+			// If the current tempurature is ever below the freezing tempurature, change the BG to blue
+			tempBG.color = Color.blue;
+			UpdateTempurature ();
+
+		} else if (currentTemp >= heatTemp - 0.1) {
+			// If the current tempurature is ever below the freezing tempurature, change the BG to blue
+			tempBG.color = Color.red;
+			UpdateTempurature ();
+
+		} 
+		else 
+		{
+			tempBG.color = Color.green;
+			UpdateTempurature ();
+		}
+	}
+	#endregion
+
+	#region Health
+	void HealthController()
 	{
 		// HEALTH CONTROLLER 
 		// If the hunger AND thirst slider is less than or equal to 0, begin degrading health TWICE as fast
@@ -65,8 +112,8 @@ public class SurvivorTraits : MonoBehaviour
 		{
 			healthSlider.value -= Time.deltaTime / healthFallRate * 2;
 		} 
-		// If the hunger OR thirst slider is less than or equal to 0, begin degrading health at a normal speed
-		else if (hungerSlider.value <= 0 || thirstSlider.value <= 0) 
+		// If the hunger OR thirst slider is less than or equal to 0, begin degrading health at a normal speed || if the current tempurature is less than freezing temp OR greater than heat tempurature
+		else if (hungerSlider.value <= 0 || thirstSlider.value <= 0 || currentTemp <= freezingTemp || currentTemp >= heatTemp) 
 		{
 			healthSlider.value -= Time.deltaTime / healthFallRate * 2;
 		}
@@ -76,7 +123,12 @@ public class SurvivorTraits : MonoBehaviour
 			// If the health slider is less than or equal to 0, call this function
 			CharacterDeath ();
 		}
+	}
+	#endregion
 
+	#region Hunger
+	void HungerController()
+	{
 		// HUNGER CONTROLLER
 		if (hungerSlider.value >= 0) 
 		{
@@ -93,8 +145,13 @@ public class SurvivorTraits : MonoBehaviour
 			// If the hunger slider is greater or equal to the maxHunger, hungerSlider equals maxHunger
 			hungerSlider.value = maxHunger;
 		}
+	}
+	#endregion
 
-		// THIRST SLIDER
+	#region Thirst
+	void ThirstController()
+	{
+		// THIRST CONTROLLER
 		if (thirstSlider.value >= 0) 
 		{
 			// If the thirst slider is greater than 0, start depleting hunger
@@ -110,16 +167,34 @@ public class SurvivorTraits : MonoBehaviour
 			// If the thirst slider is greater or equal to the maxThirst, thirstSlider equals maxThirst
 			thirstSlider.value = maxThirst;
 		}
+	}
+	#endregion
 
+	#region Stamina
+	void StaminaController()
+	{
 		// STAMINA CONTROLLER
 		if (charController.velocity.magnitude > 0 && Input.GetKey (KeyCode.LeftShift)) {
 			// If the player is moving AND they're pressing the shift key to sprint, deplete the stamina bar
 			staminaSlider.value -= Time.deltaTime / staminaFallRate * staminaFallMultiplier;
+
+			if (staminaSlider.value > 0) 
+			{
+				//if you have stamina left/ you are sprinting, increase tempurature
+				currentTemp += Time.deltaTime / 5;
+			}
+
 		} 
 		else 
 		{
 			// If the player is NOT holding shift and sprinting, increase the stamina
 			staminaSlider.value += Time.deltaTime / staminaRegainRate * staminaRegainMultiplier;
+
+			if (currentTemp >= normalTemp) 
+			{
+				// Bring temp down
+				currentTemp -= Time.deltaTime / 10;
+			}
 		}
 
 		if (staminaSlider.value >= maxStamina) {
@@ -136,6 +211,7 @@ public class SurvivorTraits : MonoBehaviour
 			playerController.m_RunSpeed = playerController.m_RunSpeedNorm;
 		}
 	}
+	#endregion
 
 	void CharacterDeath()
 	{
