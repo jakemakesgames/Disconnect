@@ -35,7 +35,7 @@ public class SurvivorTraits : MonoBehaviour
 	[Header("STAMINA")]
 	public Slider staminaSlider;
 	public int normMaxStamina;
-	public int fatMaxStamina;
+	public float fatMaxStamina;
 	private int staminaFallRate;
 	public int staminaFallMultiplier;
 	private int staminaRegainRate;

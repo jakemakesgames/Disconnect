@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Consumable
+  - DisableController
+  - SleepController
   layers:
   - Default
   - TransparentFX

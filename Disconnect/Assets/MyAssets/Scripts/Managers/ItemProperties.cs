@@ -10,15 +10,22 @@ public class ItemProperties : MonoBehaviour
 	[SerializeField] private bool food;
 	[SerializeField] private bool water;
 	[SerializeField] private bool health;
+	[SerializeField] private bool bed;
+	[Space(10)]
 	[SerializeField] private float value;
+	[SerializeField] private SleepController sleepController;
 
 	[SerializeField] SurvivorTraits survivorTraits;
 
-	public void Interaction()
+	void Start()
+	{
+		sleepController = GameObject.FindGameObjectWithTag ("SleepController").GetComponent<SleepController> ();
+	}
+
+	public void Interaction(SurvivorTraits survivorTraits)
 	{
 		//if the FOOD bool is true
-		if (food) 
-		{
+		if (food) {
 			survivorTraits.hungerSlider.value += value;
 		} 
 		// if the WATER bool is true
@@ -30,6 +37,10 @@ public class ItemProperties : MonoBehaviour
 		else if (health) 
 		{
 			survivorTraits.healthSlider.value += value;
+		} 
+		else if (bed) 
+		{
+			sleepController.EnableSleepUI();
 		}
 	}
 

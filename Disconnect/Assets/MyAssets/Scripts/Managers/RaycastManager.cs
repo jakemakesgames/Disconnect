@@ -14,6 +14,13 @@ public class RaycastManager : MonoBehaviour
 	[Header("References")]
 	[SerializeField] private Image reticle;
 	[SerializeField] private Text itemNameText;
+	[SerializeField] private SurvivorTraits survivorTraits;
+
+	void Start()
+	{
+		survivorTraits = GameObject.FindObjectOfType<SurvivorTraits> ();
+	}
+
 
 	void Update()
 	{
@@ -23,7 +30,8 @@ public class RaycastManager : MonoBehaviour
 
 		// Check what the raycast hits
 		if (Physics.Raycast (transform.position, fwd, out hit, rayLength, newLayerMask.value)) {
-			if (hit.collider.CompareTag ("Consumable")) {
+			if (hit.collider.CompareTag ("Consumable")) 
+			{
 				ReticleActive ();
 				raycastedObj = hit.collider.gameObject;
 
@@ -33,8 +41,8 @@ public class RaycastManager : MonoBehaviour
 				if (Input.GetMouseButtonDown (0)) 
 				{
 					// Select OBJ properties
-					raycastedObj.GetComponent<ItemProperties>().Interaction();
-					Destroy (raycastedObj);
+					raycastedObj.GetComponent<ItemProperties>().Interaction(survivorTraits);
+					//Destroy (raycastedObj);
 				}
 			}
 		} 
