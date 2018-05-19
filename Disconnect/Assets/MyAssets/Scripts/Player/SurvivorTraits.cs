@@ -6,29 +6,55 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class SurvivorTraits : MonoBehaviour 
 {
+	#region Health Variables
+	[Space(10)]
 	[Header("HEALTH")]
 	public Slider healthSlider;
 	public int maxHealth;
 	public int healthFallRate;
+	#endregion
 
+	#region Thirst Variables
+	[Space(10)]
 	[Header("THIRST")]
 	public Slider thirstSlider;
 	public int maxThirst;
 	public int thirstFallRate;
+	#endregion
 
+	#region Hunger Variables
+	[Space(10)]
 	[Header("HUNGER")]
 	public Slider hungerSlider;
 	public int maxHunger;
 	public int hungerFallRate;
+	#endregion
 
+	#region Stamina Variables
+	[Space(10)]
 	[Header("STAMINA")]
 	public Slider staminaSlider;
-	public int maxStamina;
+	public int normMaxStamina;
+	public int fatMaxStamina;
 	private int staminaFallRate;
 	public int staminaFallMultiplier;
 	private int staminaRegainRate;
 	public int staminaRegainMultiplier;
+	#endregion
 
+	#region Fatigue Variables
+	[Space(10)]
+	[Header("FATIGUE")]
+	public Slider fatigueSlider;
+	public int maxFatigue;
+	public int fatigueFallRate;
+	public bool fatStage1 = true;
+	public bool fatStage2 = true;
+	public bool fatStage3 = true;
+	#endregion
+
+	#region Tempurature Variables
+	[Space(10)]
 	[Header("TEMPURATURE SETTINGS")]
 	public float freezingTemp;
 	public float currentTemp;
@@ -36,12 +62,17 @@ public class SurvivorTraits : MonoBehaviour
 	public float heatTemp;
 	public Text tempNumber;
 	public Image tempBG;
+	#endregion
 
+	#region References
+	[Space(10)]
 	private CharacterController charController;
 	private FirstPersonController playerController;
+	#endregion
 
 	void Start()
 	{
+		#region Start Sliders
 		// Initiating MaxHealth values //
 		healthSlider.maxValue = maxHealth;
 		healthSlider.value = maxHealth;
@@ -55,14 +86,19 @@ public class SurvivorTraits : MonoBehaviour
 		hungerSlider.value = maxHunger;
 
 		// Initiating MaxStamina values //
-		staminaSlider.maxValue = maxStamina;
-		staminaSlider.value = maxStamina;
+		staminaSlider.maxValue = normMaxStamina;
+		staminaSlider.value = normMaxStamina;
 		staminaFallRate = 1;
 		staminaRegainRate = 1;
+
+		fatigueSlider.maxValue = maxFatigue;
+		fatigueSlider.value = maxFatigue;
+
 
 		// Instantly finding Character & First Person Controller components
 		charController = GetComponent<CharacterController>();
 		playerController = GetComponent<FirstPersonController>();
+		#endregion
 	}
 
 	void UpdateTempurature()
@@ -73,14 +109,17 @@ public class SurvivorTraits : MonoBehaviour
 
 	void Update()
 	{
+		
 		TempuratureController();
 		HealthController();
 		HungerController();
 		ThirstController();
 		StaminaController();
+		FatigueController();
+
 	}
 
-	#region Tempurature
+	#region TEMPURATURE CONTROLLER
 	void TempuratureController()
 	{
 		// TEMPURATURE CONTROLLER
@@ -103,7 +142,7 @@ public class SurvivorTraits : MonoBehaviour
 	}
 	#endregion
 
-	#region Health
+	#region HEALTH CONTROLLER
 	void HealthController()
 	{
 		// HEALTH CONTROLLER 
@@ -126,7 +165,7 @@ public class SurvivorTraits : MonoBehaviour
 	}
 	#endregion
 
-	#region Hunger
+	#region HUNGER CONTROLLER
 	void HungerController()
 	{
 		// HUNGER CONTROLLER
@@ -148,7 +187,7 @@ public class SurvivorTraits : MonoBehaviour
 	}
 	#endregion
 
-	#region Thirst
+	#region THIRST CONTROLLER
 	void ThirstController()
 	{
 		// THIRST CONTROLLER
@@ -170,7 +209,7 @@ public class SurvivorTraits : MonoBehaviour
 	}
 	#endregion
 
-	#region Stamina
+	#region STAMINA CONTROLLER
 	void StaminaController()
 	{
 		// STAMINA CONTROLLER
@@ -197,10 +236,13 @@ public class SurvivorTraits : MonoBehaviour
 			}
 		}
 
-		if (staminaSlider.value >= maxStamina) {
+		if (staminaSlider.value >= fatMaxStamina) 
+		{
 			// Capping the Stamina value at the Max Stamina value
-			staminaSlider.value = maxStamina;
-		} else if (staminaSlider.value <= 0) {
+			staminaSlider.value = fatMaxStamina;
+		} 
+		else if (staminaSlider.value <= 0) 
+		{
 			staminaSlider.value = 0;
 			// If the Stamina value is less than or equal to 0, the player's run speed is epual to the walk speed
 			playerController.m_RunSpeed = playerController.m_WalkSpeed;
@@ -209,6 +251,48 @@ public class SurvivorTraits : MonoBehaviour
 		{
 			// If the stamina is above 0, run speed is equal to the normal run speed
 			playerController.m_RunSpeed = playerController.m_RunSpeedNorm;
+		}
+	}
+	#endregion
+
+	#region FATIGUE CONTROLLER
+	void FatigueController()
+	{
+		// STAMINA CONTROLLER
+		// if the fatigue slider's value is less than or equal to 60, set the stamina value to 80
+		if (fatigueSlider.value <= 60 && fatStage1) 
+		{
+			fatMaxStamina = 80;
+			staminaSlider.value = fatMaxStamina;
+			fatStage1 = false;
+		} 
+		// if the fatigue slider's value is less than or equal to 40, set the stamina value to 60
+		else if (fatigueSlider.value <= 40 && fatStage2) 
+		{
+			fatMaxStamina = 60;
+			staminaSlider.value = fatMaxStamina;
+			fatStage2 = false;
+		} 
+		// if the fatigue slider's value is less than or equal to 20, set the stamina value to 20
+		else if (fatigueSlider.value <= 20 && fatStage3) 
+		{
+			fatMaxStamina = 20;
+			staminaSlider.value = fatMaxStamina;
+			fatStage3 = false;
+		}
+
+		if (fatigueSlider.value >= 0) 
+		{
+			fatigueSlider.value -= Time.deltaTime * fatigueFallRate;
+		} 
+		else if (fatigueSlider.value <= 0) 
+		{
+			fatigueSlider.value = 0;
+			healthSlider.value -= Time.deltaTime / healthFallRate * 2;
+		} 
+		else if (fatigueSlider.value >= maxFatigue) 
+		{
+			fatigueSlider.value = maxFatigue;
 		}
 	}
 	#endregion
