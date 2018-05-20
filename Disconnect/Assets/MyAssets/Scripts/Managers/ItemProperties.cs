@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class ItemProperties : MonoBehaviour 
 {
+	public Item item;
+
 	[Header("Consumables")]
 	public string itemName;
 
-	[SerializeField] private bool food;
-	[SerializeField] private bool water;
-	[SerializeField] private bool health;
-	[SerializeField] private bool bed;
+	public bool food;
+	public bool water;
+	public bool health;
+	public float value;
 	[Space(10)]
-	[SerializeField] private float value;
+
+	[Header("Interactables")]
+	[SerializeField] private bool bed;
 	[SerializeField] private SleepController sleepController;
 
-	[SerializeField] SurvivorTraits survivorTraits;
+	public SurvivorTraits survivorTraits;
 
 	void Start()
 	{
@@ -42,6 +46,19 @@ public class ItemProperties : MonoBehaviour
 		{
 			sleepController.EnableSleepUI();
 		}
+	}
+
+	public void PickUp()
+	{
+		if (!bed) {
+			bool wasPickedUp = Inventory.instance.Add (item);
+
+			if (wasPickedUp) {
+				Destroy (gameObject);
+			}
+
+		}
+
 	}
 
 }

@@ -11,10 +11,12 @@ public class SleepController : MonoBehaviour
 
 	[SerializeField] private float hourlyRegen;
 	[SerializeField] private DisableManager disableManager;
+	[SerializeField] private DayNightManager dayNightManager;
 
 	void Start()
 	{
 		disableManager = GameObject.FindGameObjectWithTag ("DisableController").GetComponent<DisableManager> ();
+		dayNightManager = GameObject.FindGameObjectWithTag ("DayNightManager").GetComponent<DayNightManager> ();
 	}
 
 	public void EnableSleepUI()
@@ -43,6 +45,9 @@ public class SleepController : MonoBehaviour
 		survivorTraits.fatStage3 = true;
 
 		sleepSlider.value = 1;
+
+		//Set The Time of Day
+		dayNightManager.currentTimeOfDay = 0.23f;
 		disableManager.EnablePlayer ();
 		sleepUI.SetActive (false);
 	}

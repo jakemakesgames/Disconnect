@@ -44,6 +44,12 @@ public class RaycastManager : MonoBehaviour
 					raycastedObj.GetComponent<ItemProperties>().Interaction(survivorTraits);
 					//Destroy (raycastedObj);
 				}
+
+				if (Input.GetMouseButtonDown (1)) 
+				{
+					// Pickup Function
+					raycastedObj.GetComponent<ItemProperties>().PickUp();
+				}
 			}
 		} 
 		else 

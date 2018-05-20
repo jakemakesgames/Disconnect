@@ -7,7 +7,7 @@ public class DayNightManager : MonoBehaviour
 	[SerializeField] private Light sun;
 	[SerializeField] private float secondsInFullDay = 120f;
 
-	[Range(0,1)] [SerializeField] private float currentTimeOfDay = 0;
+	[Range(0,1)] public float currentTimeOfDay = 0;
 	private float timeMultiplier = 1f;
 	private float sunInitialIntensity;
 
