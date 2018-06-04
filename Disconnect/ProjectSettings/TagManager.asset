@@ -8,6 +8,8 @@ TagManager:
   - DisableController
   - SleepController
   - DayNightManager
+  - Camera_A
+  - Camera_B
   layers:
   - Default
   - TransparentFX
