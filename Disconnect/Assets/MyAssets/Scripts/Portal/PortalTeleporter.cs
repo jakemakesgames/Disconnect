@@ -6,10 +6,10 @@ public class PortalTeleporter : MonoBehaviour {
 
     
     private Transform player;
-    [Tooltip("Reference the ColliderPlane inside the Destination Portal to choose where to send the player")]
-    [SerializeField] private Transform receiver;
-    [Tooltip("Reference the Destination Portal's parent")]
-    [SerializeField] private Transform destinationPortal;
+    [Tooltip("Reference the ReceiverLocation inside the Receiver Portal to choose where to send the player")]
+    [SerializeField] private Transform receiverLocation;
+    [Tooltip("Reference the Receiver Portal's parent")]
+    [SerializeField] private Transform receiverPortalParent;
     private int angleToRotatePortal = 0;
 
     private bool playerIsOverlapping = false;
@@ -17,15 +17,8 @@ public class PortalTeleporter : MonoBehaviour {
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        angleToRotatePortal = (int)destinationPortal.rotation.y;
+        angleToRotatePortal = (int)receiverPortalParent.rotation.y;
     }
-
-    void Update () {
-        if (playerIsOverlapping)
-        {
-            
-        }
-	}
 
     IEnumerator Teleport()
     {
@@ -36,14 +29,13 @@ public class PortalTeleporter : MonoBehaviour {
             if (dotProduct < 0f)
             {
                 //Teleport me
-                float rotationDiff = -Quaternion.Angle(transform.rotation, receiver.rotation);
+                float rotationDiff = -Quaternion.Angle(transform.rotation, receiverLocation.rotation);
                 rotationDiff += angleToRotatePortal;
                 player.Rotate(Vector3.up, rotationDiff);
 
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
-                player.position = receiver.position + positionOffset;
+                player.position = receiverLocation.position + positionOffset;
 
-                //playerIsOverlapping = false;
                 yield return new WaitForSeconds(2);
             }
         
@@ -53,16 +45,7 @@ public class PortalTeleporter : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            //playerIsOverlapping = true;
             StartCoroutine("Teleport");
-        }
-    }
-
-   private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            //playerIsOverlapping = false;
         }
     }
 }
