@@ -10,6 +10,9 @@ TagManager:
   - DayNightManager
   - Camera_A
   - Camera_B
+  - Camera_C
+  - Camera_CorrectCor
+  - Camera_WrongCor
   layers:
   - Default
   - TransparentFX
