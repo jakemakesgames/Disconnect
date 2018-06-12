@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 20927853876939812}
   - component: {fileID: 81489164573017472}
   - component: {fileID: 124067891308710586}
-  - component: {fileID: 114417384850638472}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -44,11 +43,9 @@ GameObject:
   - component: {fileID: 82810073645995292}
   - component: {fileID: 23717602571407908}
   - component: {fileID: 33408280065976018}
-  - component: {fileID: 114370483706948208}
-  - component: {fileID: 114134819748682022}
   m_Layer: 0
   m_Name: FPSController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,8 +56,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794426608004866}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.46, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58, y: 1, z: 46.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4698630066300368}
@@ -96,7 +93,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -185,7 +182,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794426608004866}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -259,73 +256,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114134819748682022
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1794426608004866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b34973d11882834988fbe24d61f5af7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCollider: {fileID: 143930782760032630}
---- !u!114 &114370483706948208
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1794426608004866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43806c3c10d0eb944893f055bdc5fe0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
-  maxHealth: 100
-  healthFallRate: 5
-  thirstSlider: {fileID: 0}
-  maxThirst: 100
-  thirstFallRate: 2
-  hungerSlider: {fileID: 0}
-  maxHunger: 100
-  hungerFallRate: 2
-  staminaSlider: {fileID: 0}
-  normMaxStamina: 100
-  fatMaxStamina: 100
-  staminaFallMultiplier: 5
-  staminaRegainMultiplier: 5
-  fatigueSlider: {fileID: 0}
-  maxFatigue: 100
-  fatigueFallRate: 1
-  fatStage1: 1
-  fatStage2: 1
-  fatStage3: 1
-  freezingTemp: 25
-  currentTemp: 37
-  normalTemp: 37
-  heatTemp: 38
-  tempNumber: {fileID: 0}
-  tempBG: {fileID: 0}
---- !u!114 &114417384850638472
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1229271662002454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d65ec12f6892ec49b2f46218a38d6ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayLength: 10
-  newLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  reticle: {fileID: 0}
-  itemNameText: {fileID: 0}
-  survivorTraits: {fileID: 114370483706948208}
 --- !u!114 &114654217312753576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,10 +269,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsWalking: 0
   m_WalkSpeed: 5
-  m_RunSpeed: 10
-  m_RunSpeedNorm: 10
+  m_RunSpeed: 5
+  m_RunSpeedNorm: 5
   m_RunstepLenghten: 0.7
-  m_JumpSpeed: 10
+  m_JumpSpeed: 0
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:
