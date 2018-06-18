@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000032, guid: e3c6332f7acf12e459cd22a07a661c87,
+  m_LightingDataAsset: {fileID: 112000012, guid: e3c6332f7acf12e459cd22a07a661c87,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -14091,6 +14091,16 @@ Prefab:
       propertyPath: m_CullingMask.m_Bits
       value: 4294963711
       objectReference: {fileID: 0}
+    - target: {fileID: 20766747711641586, guid: 2fbd1d85f48aa0c4890be5ce074061de,
+        type: 2}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20766747711641586, guid: 2fbd1d85f48aa0c4890be5ce074061de,
+        type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2fbd1d85f48aa0c4890be5ce074061de, type: 2}
   m_IsPrefabParent: 0
@@ -19222,6 +19232,16 @@ Prefab:
         type: 2}
       propertyPath: m_CullingMask.m_Bits
       value: 4294963711
+      objectReference: {fileID: 0}
+    - target: {fileID: 20559196816612050, guid: 3999e7ca0f7f2184281ab770e63a1441,
+        type: 2}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20559196816612050, guid: 3999e7ca0f7f2184281ab770e63a1441,
+        type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3999e7ca0f7f2184281ab770e63a1441, type: 2}
@@ -24365,6 +24385,16 @@ Prefab:
         type: 2}
       propertyPath: m_CullingMask.m_Bits
       value: 4294963711
+      objectReference: {fileID: 0}
+    - target: {fileID: 20253569731440060, guid: c5aedd7c60809ef48b1329bf82502f1d,
+        type: 2}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20253569731440060, guid: c5aedd7c60809ef48b1329bf82502f1d,
+        type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5aedd7c60809ef48b1329bf82502f1d, type: 2}
@@ -32078,6 +32108,16 @@ Prefab:
       propertyPath: secondSenderPortalToTrack
       value: 
       objectReference: {fileID: 586773719}
+    - target: {fileID: 20570753964052632, guid: a67f380c378f7fc4f86d9aca8aebd9d5,
+        type: 2}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20570753964052632, guid: a67f380c378f7fc4f86d9aca8aebd9d5,
+        type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a67f380c378f7fc4f86d9aca8aebd9d5, type: 2}
   m_IsPrefabParent: 0
@@ -51871,6 +51911,16 @@ Prefab:
         type: 2}
       propertyPath: m_CullingMask.m_Bits
       value: 4294963711
+      objectReference: {fileID: 0}
+    - target: {fileID: 20694215032618506, guid: 8f31cc61851135344849dc7b560be478,
+        type: 2}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20694215032618506, guid: 8f31cc61851135344849dc7b560be478,
+        type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f31cc61851135344849dc7b560be478, type: 2}
