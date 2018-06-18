@@ -1,60 +1,16 @@
 fileFormatVersion: 2
-guid: fa556c19db0a40c469427dc5eb99046f
-timeCreated: 1529283876
+guid: 37f332fbdbbc2a7469a6365a9cd24696
+timeCreated: 1529280310
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: BackLeftWing
-    100002: BackRightWing
-    100004: Cockpit
-    100006: Disk
-    100008: Fin
-    100010: LeftWing
-    100012: //RootNode
-    100014: Propellar
-    100016: RightWing
-    100018: SingleSeatPlane
-    400000: BackLeftWing
-    400002: BackRightWing
-    400004: Cockpit
-    400006: Disk
-    400008: Fin
-    400010: LeftWing
-    400012: //RootNode
-    400014: Propellar
-    400016: RightWing
-    400018: SingleSeatPlane
-    2100000: Prepellar
-    2100002: Grey
-    2100004: NavyGrey
-    2100006: Glass
-    2100008: LeatherSeat
-    2100010: Black
-    2300000: BackLeftWing
-    2300002: BackRightWing
-    2300004: Cockpit
-    2300006: Disk
-    2300008: Fin
-    2300010: LeftWing
-    2300012: Propellar
-    2300014: RightWing
-    3300000: BackLeftWing
-    3300002: BackRightWing
-    3300004: Cockpit
-    3300006: Disk
-    3300008: Fin
-    3300010: LeftWing
-    3300012: Propellar
-    3300014: RightWing
-    4300000: Propellar
-    4300002: Disk
-    4300004: RightWing
-    4300006: LeftWing
-    4300008: BackRightWing
-    4300010: BackLeftWing
-    4300012: Fin
-    4300014: Cockpit
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Rocky
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: LeftMountainWall
     9500000: //RootNode
   externalObjects: {}
   materials:
