@@ -5,20 +5,15 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class EndGame : MonoBehaviour 
 {
-	public GameObject platform;
-	public float speed;
-	public Transform endPoint;
+    public Animator anim;
 
-	void OnTriggerStay(Collider other)
-	{
-		if (other.CompareTag ("Player")) 
-		{
-			platform.GetComponent<Rigidbody> ();
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            anim.SetBool("FadeBool", true);
+        }
+    }
 
-			other.GetComponent<FirstPersonController> ().enabled = false;
 
-			float moveSpd = speed * Time.deltaTime;
-			platform.transform.position = Vector3.MoveTowards (platform.transform.position, endPoint.position, moveSpd);
-		}
-	}
 }
